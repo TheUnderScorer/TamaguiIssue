@@ -1,20 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { Card, TamaguiProvider, Text } from 'tamagui';
+import tamaguiConfig from './tamagui.config';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <TamaguiProvider config={tamaguiConfig}>
       <StatusBar style="auto" />
-    </View>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'red',
+        }}
+      >
+        <Card
+          elevation="$4"
+          height={100}
+          width={100}
+          backgroundColor="green"
+          animation="medium"
+          onPress={() => {
+            console.log('press');
+          }}
+          pressTheme
+          pressStyle={{
+            scale: 0.9,
+          }}
+          enterStyle={{
+            opacity: 0.5,
+            y: 20,
+          }}
+        >
+          <Text>Contents</Text>
+        </Card>
+      </SafeAreaView>
+    </TamaguiProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
